@@ -68,7 +68,7 @@ const unsigned old_sl_limit = 16500;
 const unsigned new_sl_limit = 66000;
 
 const unsigned old_sl_dl_limit = 16500;
-const unsigned new_sl_dl_limit = 23000;
+const unsigned new_sl_dl_limit = 66000;
 
 const unsigned old_tmds_limit = 34000;
 const unsigned new_tmds_limit = 66000;
