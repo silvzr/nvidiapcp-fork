@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release Win32
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $workspace = Get-Location
+          $outDir = Join-Path $workspace 'build/Release'
+          $intDir = Join-Path $workspace 'build/obj'
+          msbuild nvlddmkm-patcher.sln /p:Configuration=Release /p:Platform=Win32 /p:OutDir="$outDir\" /p:IntDir="$intDir\" /m
+          $exePath = Join-Path $outDir 'nvlddmkm-patcher.exe'
+          $fullExePath = Join-Path $outDir 'nvlddmkm-patcher-full.exe'
+          if (-not (Test-Path $exePath)) {
+            Get-ChildItem $outDir -Recurse | Format-List
+            throw "Expected executable '$exePath' was not produced."
+          }
+
+      - name: Upload Release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nvlddmkm-patcher-Release-Win32
+          path: build/Release/
+          if-no-files-found: error
