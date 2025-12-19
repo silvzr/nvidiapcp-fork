@@ -19,7 +19,7 @@
 
 /* Constants ****************************************************************/
 
-const char *title = "NVIDIA Pixel Clock Patcher 1.4.16";
+const char *title = "NVIDIA Pixel Clock Patcher 1.5";
 
 const char *driver_dir = "drivers\\nvlddmkm-patched";
 const char *driver_sys = "drivers\\nvlddmkm-patched\\nvlddmkm.sys";
@@ -57,7 +57,7 @@ const char *service_key = "SYSTEM\\CurrentControlSet\\Services\\nvlddmkm";
 const unsigned char patch1[] = {0x45, 0x64, 0x67, 0x61, 0x72, 0x64, 0x20, 0x52, 0x6F, 0x62, 0x65, 0x72, 0x74, 0x6F, 0x20, 0x56, 0x69, 0x65, 0x72, 0x61};
 const unsigned char patch2[] = {0x50, 0x69, 0x78, 0x65, 0x6C, 0x20, 0x43, 0x6C, 0x6F, 0x63, 0x6B, 0x20, 0x50, 0x61, 0x74, 0x63, 0x68, 0x65, 0x72};
 
-const unsigned max_file_size = 100000000;
+const unsigned max_file_size = 2u * 1024u * 1024u * 1024u;
 
 /* Limits *******************************************************************/
 
